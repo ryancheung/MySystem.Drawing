@@ -1736,6 +1736,27 @@ namespace MySystem.Drawing
             return new Color((int)(value.R * scale), (int)(value.G * scale), (int)(value.B * scale), (int)(value.A * scale));
         }
 
+        #region System.Drawing.Color compatibal methods
+        public static Color FromArgb(int argb) => FromArgb(unchecked((uint)argb));
+        public static Color FromArgb(uint packedValue) => new Color(packedValue);
+        public static Color FromArgb(int r, int g, int b)
+        {
+            return new Color(r, g, b, (int)255);
+        }
+        public static Color FromArgb(byte r, byte g, byte b)
+        {
+            return new Color(r, g, b, (byte)255);
+        }
+        public static Color FromArgb(byte a, byte r, byte g, byte b)
+        {
+            return new Color(r, g, b, a);
+        }
+        public static Color FromArgb(int a, int r, int g, int b)
+        {
+            return new Color(r, g, b, a);
+        }
+        #endregion
+
         /// <summary>
         /// Gets or sets packed value of this <see cref="Color"/>.
         /// </summary>
@@ -1744,7 +1765,6 @@ namespace MySystem.Drawing
             get { return _packedValue; }
             set { _packedValue = value; }
         }
-
 
         internal string DebugDisplayString
         {
