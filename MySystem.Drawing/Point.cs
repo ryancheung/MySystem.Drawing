@@ -6,7 +6,6 @@ namespace MySystem.Drawing
     ///    Represents an ordered pair of x and y coordinates that
     ///    define a point in a two-dimensional plane.
     /// </summary>
-    [Serializable]
     public struct Point : IEquatable<Point>
     {
         /// <summary>
@@ -55,7 +54,7 @@ namespace MySystem.Drawing
         ///       Gets a value indicating whether this <see cref='MySystem.Drawing.Point'/> is empty.
         ///    </para>
         /// </summary>
-        public bool IsEmpty => x == 0 && y == 0;
+        public bool IsEmpty { get { return x == 0 && y == 0; } }
 
         /// <summary>
         ///    Gets the x-coordinate of this <see cref='MySystem.Drawing.Point'/>.
@@ -83,28 +82,28 @@ namespace MySystem.Drawing
         ///    <see cref='MySystem.Drawing.Point'/> 
         /// </para>
         /// </summary>
-        public static implicit operator PointF(Point p) => new PointF(p.X, p.Y);
+        public static implicit operator PointF(Point p) { return new PointF(p.X, p.Y); }
 
         /// <summary>
         ///    <para>
         ///       Creates a <see cref='MySystem.Drawing.Size'/> with the coordinates of the specified <see cref='MySystem.Drawing.Point'/> .
         ///    </para>
         /// </summary>
-        public static explicit operator Size(Point p) => new Size(p.X, p.Y);
+        public static explicit operator Size(Point p) { return new Size(p.X, p.Y); }
 
         /// <summary>
         ///    <para>
         ///       Translates a <see cref='MySystem.Drawing.Point'/> by a given <see cref='MySystem.Drawing.Size'/> .
         ///    </para>
         /// </summary>        
-        public static Point operator +(Point pt, Size sz) => Add(pt, sz);
+        public static Point operator +(Point pt, Size sz) { return Add(pt, sz); }
 
         /// <summary>
         ///    <para>
         ///       Translates a <see cref='MySystem.Drawing.Point'/> by the negative of a given <see cref='MySystem.Drawing.Size'/> .
         ///    </para>
         /// </summary>        
-        public static Point operator -(Point pt, Size sz) => Subtract(pt, sz);
+        public static Point operator -(Point pt, Size sz) { return Subtract(pt, sz); }
 
         /// <summary>
         ///    <para>
@@ -113,7 +112,7 @@ namespace MySystem.Drawing
         ///       objects are equal.
         ///    </para>
         /// </summary>
-        public static bool operator ==(Point left, Point right) => left.X == right.X && left.Y == right.Y;
+        public static bool operator ==(Point left, Point right) { return left.X == right.X && left.Y == right.Y; }
 
         /// <summary>
         ///    <para>
@@ -123,39 +122,39 @@ namespace MySystem.Drawing
         ///    objects are unequal.
         /// </para>
         /// </summary>
-        public static bool operator !=(Point left, Point right) => !(left == right);
+        public static bool operator !=(Point left, Point right) { return !(left == right); }
 
         /// <summary>
         ///    <para>
         ///       Translates a <see cref='MySystem.Drawing.Point'/> by a given <see cref='MySystem.Drawing.Size'/> .
         ///    </para>
         /// </summary>        
-        public static Point Add(Point pt, Size sz) => new Point(unchecked(pt.X + sz.Width), unchecked(pt.Y + sz.Height));
+        public static Point Add(Point pt, Size sz) { return new Point(unchecked(pt.X + sz.Width), unchecked(pt.Y + sz.Height)); }
 
         /// <summary>
         ///    <para>
         ///       Translates a <see cref='MySystem.Drawing.Point'/> by the negative of a given <see cref='MySystem.Drawing.Size'/> .
         ///    </para>
         /// </summary>        
-        public static Point Subtract(Point pt, Size sz) => new Point(unchecked(pt.X - sz.Width), unchecked(pt.Y - sz.Height));
+        public static Point Subtract(Point pt, Size sz) { return new Point(unchecked(pt.X - sz.Width), unchecked(pt.Y - sz.Height)); }
 
         /// <summary>
         ///   Converts a PointF to a Point by performing a ceiling operation on
         ///   all the coordinates.
         /// </summary>
-        public static Point Ceiling(PointF value) => new Point(unchecked((int)Math.Ceiling(value.X)), unchecked((int)Math.Ceiling(value.Y)));
+        public static Point Ceiling(PointF value) { return new Point(unchecked((int)Math.Ceiling(value.X)), unchecked((int)Math.Ceiling(value.Y))); }
 
         /// <summary>
         ///   Converts a PointF to a Point by performing a truncate operation on
         ///   all the coordinates.
         /// </summary>
-        public static Point Truncate(PointF value) => new Point(unchecked((int)value.X), unchecked((int)value.Y));
+        public static Point Truncate(PointF value) { return new Point(unchecked((int)value.X), unchecked((int)value.Y)); }
 
         /// <summary>
         ///   Converts a PointF to a Point by performing a round operation on
         ///   all the coordinates.
         /// </summary>
-        public static Point Round(PointF value) => new Point(unchecked((int)Math.Round(value.X)), unchecked((int)Math.Round(value.Y)));
+        public static Point Round(PointF value) { return new Point(unchecked((int)Math.Round(value.X)), unchecked((int)Math.Round(value.Y))); }
 
         /// <summary>
         ///    <para>
@@ -163,16 +162,16 @@ namespace MySystem.Drawing
         ///       the same coordinates as the specified <see cref='System.Object'/>.
         ///    </para>
         /// </summary>
-        public override bool Equals(object obj) => obj is Point && Equals((Point)obj);
+        public override bool Equals(object obj) { return obj is Point && Equals((Point)obj); }
 
-        public bool Equals(Point other) => this == other;
+        public bool Equals(Point other) { return this == other; }
 
         /// <summary>
         ///    <para>
         ///       Returns a hash code.
         ///    </para>
         /// </summary>
-        public override int GetHashCode() => HashHelpers.Combine(X, Y);
+        public override int GetHashCode() { return HashHelpers.Combine(X, Y); }
 
         /// <summary>
         ///    Translates this <see cref='MySystem.Drawing.Point'/> by the specified amount.
@@ -189,7 +188,7 @@ namespace MySystem.Drawing
         /// <summary>
         ///    Translates this <see cref='MySystem.Drawing.Point'/> by the specified amount.
         /// </summary>
-        public void Offset(Point p) => Offset(p.X, p.Y);
+        public void Offset(Point p) { Offset(p.X, p.Y); }
 
         /// <summary>
         ///    <para>
@@ -198,10 +197,10 @@ namespace MySystem.Drawing
         ///       string.
         ///    </para>
         /// </summary>
-        public override string ToString() => "{X=" + X.ToString() + ",Y=" + Y.ToString() + "}";
+        public override string ToString() { return "{X=" + X.ToString() + ",Y=" + Y.ToString() + "}"; }
 
-        private static short HighInt16(int n) => unchecked((short)((n >> 16) & 0xffff));
+        private static short HighInt16(int n) { return unchecked((short)((n >> 16) & 0xffff)); }
 
-        private static short LowInt16(int n) => unchecked((short)(n & 0xffff));
+        private static short LowInt16(int n) { return unchecked((short)(n & 0xffff)); }
     }
 }

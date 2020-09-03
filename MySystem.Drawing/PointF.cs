@@ -6,7 +6,6 @@ namespace MySystem.Drawing
     ///    Represents an ordered pair of x and y coordinates that
     ///    define a point in a two-dimensional plane.
     /// </summary>
-    [Serializable]
     public struct PointF : IEquatable<PointF>
     {
         /// <summary>
@@ -36,7 +35,7 @@ namespace MySystem.Drawing
         ///       Gets a value indicating whether this <see cref='MySystem.Drawing.PointF'/> is empty.
         ///    </para>
         /// </summary>
-        public bool IsEmpty => x == 0f && y == 0f;
+        public bool IsEmpty { get { return x == 0f && y == 0f; } }
 
         /// <summary>
         ///    <para>
@@ -65,28 +64,28 @@ namespace MySystem.Drawing
         ///       Translates a <see cref='MySystem.Drawing.PointF'/> by a given <see cref='MySystem.Drawing.Size'/> .
         ///    </para>
         /// </summary>
-        public static PointF operator +(PointF pt, Size sz) => Add(pt, sz);
+        public static PointF operator +(PointF pt, Size sz) { return Add(pt, sz); }
 
         /// <summary>
         ///    <para>
         ///       Translates a <see cref='MySystem.Drawing.PointF'/> by the negative of a given <see cref='MySystem.Drawing.Size'/> .
         ///    </para>
         /// </summary>
-        public static PointF operator -(PointF pt, Size sz) => Subtract(pt, sz);
+        public static PointF operator -(PointF pt, Size sz) { return Subtract(pt, sz); }
 
         /// <summary>
         ///    <para>
         ///       Translates a <see cref='MySystem.Drawing.PointF'/> by a given <see cref='MySystem.Drawing.SizeF'/> .
         ///    </para>
         /// </summary>
-        public static PointF operator +(PointF pt, SizeF sz) => Add(pt, sz);
+        public static PointF operator +(PointF pt, SizeF sz) { return Add(pt, sz); }
 
         /// <summary>
         ///    <para>
         ///       Translates a <see cref='MySystem.Drawing.PointF'/> by the negative of a given <see cref='MySystem.Drawing.SizeF'/> .
         ///    </para>
         /// </summary>
-        public static PointF operator -(PointF pt, SizeF sz) => Subtract(pt, sz);
+        public static PointF operator -(PointF pt, SizeF sz) { return Subtract(pt, sz); }
 
         /// <summary>
         ///    <para>
@@ -95,7 +94,7 @@ namespace MySystem.Drawing
         ///       objects are equal.
         ///    </para>
         /// </summary>
-        public static bool operator ==(PointF left, PointF right) => left.X == right.X && left.Y == right.Y;
+        public static bool operator ==(PointF left, PointF right) { return left.X == right.X && left.Y == right.Y; }
 
         /// <summary>
         ///    <para>
@@ -105,42 +104,42 @@ namespace MySystem.Drawing
         ///    objects are unequal.
         /// </para>
         /// </summary>
-        public static bool operator !=(PointF left, PointF right) => !(left == right);
+        public static bool operator !=(PointF left, PointF right) { return !(left == right); }
 
         /// <summary>
         ///    <para>
         ///       Translates a <see cref='MySystem.Drawing.PointF'/> by a given <see cref='MySystem.Drawing.Size'/> .
         ///    </para>
         /// </summary>
-        public static PointF Add(PointF pt, Size sz) => new PointF(pt.X + sz.Width, pt.Y + sz.Height);
+        public static PointF Add(PointF pt, Size sz) { return new PointF(pt.X + sz.Width, pt.Y + sz.Height); }
 
         /// <summary>
         ///    <para>
         ///       Translates a <see cref='MySystem.Drawing.PointF'/> by the negative of a given <see cref='MySystem.Drawing.Size'/> .
         ///    </para>
         /// </summary>
-        public static PointF Subtract(PointF pt, Size sz) => new PointF(pt.X - sz.Width, pt.Y - sz.Height);
+        public static PointF Subtract(PointF pt, Size sz) { return new PointF(pt.X - sz.Width, pt.Y - sz.Height); }
 
         /// <summary>
         ///    <para>
         ///       Translates a <see cref='MySystem.Drawing.PointF'/> by a given <see cref='MySystem.Drawing.SizeF'/> .
         ///    </para>
         /// </summary>
-        public static PointF Add(PointF pt, SizeF sz) => new PointF(pt.X + sz.Width, pt.Y + sz.Height);
+        public static PointF Add(PointF pt, SizeF sz) { return new PointF(pt.X + sz.Width, pt.Y + sz.Height); }
 
         /// <summary>
         ///    <para>
         ///       Translates a <see cref='MySystem.Drawing.PointF'/> by the negative of a given <see cref='MySystem.Drawing.SizeF'/> .
         ///    </para>
         /// </summary>
-        public static PointF Subtract(PointF pt, SizeF sz) => new PointF(pt.X - sz.Width, pt.Y - sz.Height);
+        public static PointF Subtract(PointF pt, SizeF sz) { return new PointF(pt.X - sz.Width, pt.Y - sz.Height); }
 
-        public override bool Equals(object obj) => obj is PointF && Equals((PointF)obj);
+        public override bool Equals(object obj) { return obj is PointF && Equals((PointF)obj); }
 
-        public bool Equals(PointF other) => this == other;
+        public bool Equals(PointF other) { return this == other; }
 
-        public override int GetHashCode() => HashHelpers.Combine(X.GetHashCode(), Y.GetHashCode());
+        public override int GetHashCode() { return HashHelpers.Combine(X.GetHashCode(), Y.GetHashCode()); }
 
-        public override string ToString() => "{X=" + x.ToString() + ", Y=" + y.ToString() + "}";
+        public override string ToString() { return "{X=" + x.ToString() + ", Y=" + y.ToString() + "}"; }
     }
 }

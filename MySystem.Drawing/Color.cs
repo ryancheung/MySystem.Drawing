@@ -1737,8 +1737,8 @@ namespace MySystem.Drawing
         }
 
         #region System.Drawing.Color compatibal methods
-        public static Color FromArgb(int argb) => FromArgb(unchecked((uint)argb));
-        public static Color FromArgb(uint packedValue) => new Color(packedValue);
+        public static Color FromArgb(int argb) { return FromArgb(unchecked((uint)argb)); }
+        public static Color FromArgb(uint packedValue) { return new Color(packedValue); }
         public static Color FromArgb(int r, int g, int b)
         {
             return new Color(r, g, b, (int)255);

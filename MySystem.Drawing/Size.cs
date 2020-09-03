@@ -9,7 +9,6 @@ namespace MySystem.Drawing
     ///    Represents the size of a rectangular region
     ///    with an ordered pair of width and height.
     /// </summary>
-    [Serializable]
     public struct Size : IEquatable<Size>
     {
         /// <summary>
@@ -52,21 +51,21 @@ namespace MySystem.Drawing
         ///    Converts the specified <see cref='MySystem.Drawing.Size'/> to a
         /// <see cref='MySystem.Drawing.SizeF'/>.
         /// </summary>
-        public static implicit operator SizeF(Size p) => new SizeF(p.Width, p.Height);
+        public static implicit operator SizeF(Size p) { return new SizeF(p.Width, p.Height); }
 
         /// <summary>
         ///    <para>
         ///       Performs vector addition of two <see cref='MySystem.Drawing.Size'/> objects.
         ///    </para>
         /// </summary>
-        public static Size operator +(Size sz1, Size sz2) => Add(sz1, sz2);
+        public static Size operator +(Size sz1, Size sz2) { return Add(sz1, sz2); }
 
         /// <summary>
         ///    <para>
         ///       Contracts a <see cref='MySystem.Drawing.Size'/> by another <see cref='MySystem.Drawing.Size'/>
         ///    </para>
         /// </summary>
-        public static Size operator -(Size sz1, Size sz2) => Subtract(sz1, sz2);
+        public static Size operator -(Size sz1, Size sz2) { return Subtract(sz1, sz2); }
 
         /// <summary>
         /// Multiplies a <see cref="Size"/> by an <see cref="int"/> producing <see cref="Size"/>.
@@ -74,7 +73,7 @@ namespace MySystem.Drawing
         /// <param name="left">Multiplier of type <see cref="int"/>.</param>
         /// <param name="right">Multiplicand of type <see cref="Size"/>.</param>
         /// <returns>Product of type <see cref="Size"/>.</returns>
-        public static Size operator *(int left, Size right) => Multiply(right, left);
+        public static Size operator *(int left, Size right) { return Multiply(right, left); }
 
         /// <summary>
         /// Multiplies <see cref="Size"/> by an <see cref="int"/> producing <see cref="Size"/>.
@@ -82,7 +81,7 @@ namespace MySystem.Drawing
         /// <param name="left">Multiplicand of type <see cref="Size"/>.</param>
         /// <param name="right">Multiplier of type <see cref="int"/>.</param>
         /// <returns>Product of type <see cref="Size"/>.</returns>
-        public static Size operator *(Size left, int right) => Multiply(left, right);
+        public static Size operator *(Size left, int right) { return Multiply(left, right); }
 
         /// <summary>
         /// Divides <see cref="Size"/> by an <see cref="int"/> producing <see cref="Size"/>.
@@ -90,7 +89,7 @@ namespace MySystem.Drawing
         /// <param name="left">Dividend of type <see cref="Size"/>.</param>
         /// <param name="right">Divisor of type <see cref="int"/>.</param>
         /// <returns>Result of type <see cref="Size"/>.</returns>
-        public static Size operator /(Size left, int right) => new Size(unchecked(left.width / right), unchecked(left.height / right));
+        public static Size operator /(Size left, int right) { return new Size(unchecked(left.width / right), unchecked(left.height / right)); }
 
         /// <summary>
         /// Multiplies <see cref="Size"/> by a <see cref="float"/> producing <see cref="SizeF"/>.
@@ -98,7 +97,7 @@ namespace MySystem.Drawing
         /// <param name="left">Multiplier of type <see cref="float"/>.</param>
         /// <param name="right">Multiplicand of type <see cref="Size"/>.</param>
         /// <returns>Product of type <see cref="SizeF"/>.</returns>
-        public static SizeF operator *(float left, Size right) => Multiply(right, left);
+        public static SizeF operator *(float left, Size right) { return Multiply(right, left); }
 
         /// <summary>
         /// Multiplies <see cref="Size"/> by a <see cref="float"/> producing <see cref="SizeF"/>.
@@ -106,7 +105,7 @@ namespace MySystem.Drawing
         /// <param name="left">Multiplicand of type <see cref="Size"/>.</param>
         /// <param name="right">Multiplier of type <see cref="float"/>.</param>
         /// <returns>Product of type <see cref="SizeF"/>.</returns>
-        public static SizeF operator *(Size left, float right) => Multiply(left, right);
+        public static SizeF operator *(Size left, float right) { return Multiply(left, right); }
 
         /// <summary>
         /// Divides <see cref="Size"/> by a <see cref="float"/> producing <see cref="SizeF"/>.
@@ -115,32 +114,32 @@ namespace MySystem.Drawing
         /// <param name="right">Divisor of type <see cref="int"/>.</param>
         /// <returns>Result of type <see cref="SizeF"/>.</returns>
         public static SizeF operator /(Size left, float right)
-            => new SizeF(left.width / right, left.height / right);
+        { return new SizeF(left.width / right, left.height / right); }
 
         /// <summary>
         ///    Tests whether two <see cref='MySystem.Drawing.Size'/> objects
         ///    are identical.
         /// </summary>
-        public static bool operator ==(Size sz1, Size sz2) => sz1.Width == sz2.Width && sz1.Height == sz2.Height;
+        public static bool operator ==(Size sz1, Size sz2) { return sz1.Width == sz2.Width && sz1.Height == sz2.Height; }
 
         /// <summary>
         ///    <para>
         ///       Tests whether two <see cref='MySystem.Drawing.Size'/> objects are different.
         ///    </para>
         /// </summary>
-        public static bool operator !=(Size sz1, Size sz2) => !(sz1 == sz2);
+        public static bool operator !=(Size sz1, Size sz2) { return !(sz1 == sz2); }
 
         /// <summary>
         ///    Converts the specified <see cref='MySystem.Drawing.Size'/> to a
         /// <see cref='MySystem.Drawing.Point'/>.
         /// </summary>
-        public static explicit operator Point(Size size) => new Point(size.Width, size.Height);
+        public static explicit operator Point(Size size) { return new Point(size.Width, size.Height); }
 
         /// <summary>
         ///    Tests whether this <see cref='MySystem.Drawing.Size'/> has zero
         ///    width and height.
         /// </summary>
-        public bool IsEmpty => width == 0 && height == 0;
+        public bool IsEmpty { get { return width == 0 && height == 0; } }
 
         /**
          * Horizontal dimension
@@ -177,36 +176,36 @@ namespace MySystem.Drawing
         ///       Performs vector addition of two <see cref='MySystem.Drawing.Size'/> objects.
         ///    </para>
         /// </summary>
-        public static Size Add(Size sz1, Size sz2) =>
-            new Size(unchecked(sz1.Width + sz2.Width), unchecked(sz1.Height + sz2.Height));
+        public static Size Add(Size sz1, Size sz2) { return
+           new Size(unchecked(sz1.Width + sz2.Width), unchecked(sz1.Height + sz2.Height)); }
 
         /// <summary>
         ///   Converts a SizeF to a Size by performing a ceiling operation on
         ///   all the coordinates.
         /// </summary>
-        public static Size Ceiling(SizeF value) =>
-            new Size(unchecked((int)Math.Ceiling(value.Width)), unchecked((int)Math.Ceiling(value.Height)));
+        public static Size Ceiling(SizeF value) { return
+           new Size(unchecked((int)Math.Ceiling(value.Width)), unchecked((int)Math.Ceiling(value.Height))); }
 
         /// <summary>
         ///    <para>
         ///       Contracts a <see cref='MySystem.Drawing.Size'/> by another <see cref='MySystem.Drawing.Size'/> .
         ///    </para>
         /// </summary>
-        public static Size Subtract(Size sz1, Size sz2) =>
-            new Size(unchecked(sz1.Width - sz2.Width), unchecked(sz1.Height - sz2.Height));
+        public static Size Subtract(Size sz1, Size sz2) { return
+           new Size(unchecked(sz1.Width - sz2.Width), unchecked(sz1.Height - sz2.Height)); }
 
         /// <summary>
         ///   Converts a SizeF to a Size by performing a truncate operation on
         ///   all the coordinates.
         /// </summary>
-        public static Size Truncate(SizeF value) => new Size(unchecked((int)value.Width), unchecked((int)value.Height));
+        public static Size Truncate(SizeF value) { return new Size(unchecked((int)value.Width), unchecked((int)value.Height)); }
 
         /// <summary>
         ///   Converts a SizeF to a Size by performing a round operation on
         ///   all the coordinates.
         /// </summary>
-        public static Size Round(SizeF value) =>
-            new Size(unchecked((int)Math.Round(value.Width)), unchecked((int)Math.Round(value.Height)));
+        public static Size Round(SizeF value) { return
+           new Size(unchecked((int)Math.Round(value.Width)), unchecked((int)Math.Round(value.Height))); }
 
         /// <summary>
         ///    <para>
@@ -215,16 +214,16 @@ namespace MySystem.Drawing
         ///    with the same dimensions as this <see cref='MySystem.Drawing.Size'/>.
         /// </para>
         /// </summary>
-        public override bool Equals(object obj) => obj is Size && Equals((Size)obj);
+        public override bool Equals(object obj) { return obj is Size && Equals((Size)obj); }
 
-        public bool Equals(Size other) => this == other;
+        public bool Equals(Size other) { return this == other; }
 
         /// <summary>
         ///    <para>
         ///       Returns a hash code.
         ///    </para>
         /// </summary>
-        public override int GetHashCode() => HashHelpers.Combine(Width, Height);
+        public override int GetHashCode() { return HashHelpers.Combine(Width, Height); }
 
         /// <summary>
         ///    <para>
@@ -232,7 +231,7 @@ namespace MySystem.Drawing
         ///    <see cref='MySystem.Drawing.Size'/>.
         ///    </para>
         /// </summary>
-        public override string ToString() => "{Width=" + width.ToString() + ", Height=" + height.ToString() + "}";
+        public override string ToString() { return "{Width=" + width.ToString() + ", Height=" + height.ToString() + "}"; }
 
         /// <summary>
         /// Multiplies <see cref="Size"/> by an <see cref="int"/> producing <see cref="Size"/>.
@@ -240,8 +239,8 @@ namespace MySystem.Drawing
         /// <param name="size">Multiplicand of type <see cref="Size"/>.</param>
         /// <param name="multiplier">Multiplier of type <see cref='int'/>.</param>
         /// <returns>Product of type <see cref="Size"/>.</returns>
-        private static Size Multiply(Size size, int multiplier) =>
-            new Size(unchecked(size.width * multiplier), unchecked(size.height * multiplier));
+        private static Size Multiply(Size size, int multiplier) { return
+           new Size(unchecked(size.width * multiplier), unchecked(size.height * multiplier)); }
 
         /// <summary>
         /// Multiplies <see cref="Size"/> by a <see cref="float"/> producing <see cref="SizeF"/>.
@@ -249,7 +248,9 @@ namespace MySystem.Drawing
         /// <param name="size">Multiplicand of type <see cref="Size"/>.</param>
         /// <param name="multiplier">Multiplier of type <see cref="float"/>.</param>
         /// <returns>Product of type SizeF.</returns>
-        private static SizeF Multiply(Size size, float multiplier) =>
-            new SizeF(size.width * multiplier, size.height * multiplier);
+        private static SizeF Multiply(Size size, float multiplier)
+        {
+            return new SizeF(size.width * multiplier, size.height * multiplier);
+        }
     }
 }
